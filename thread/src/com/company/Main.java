@@ -75,8 +75,10 @@ public class Main {
                         if ((people-(Count.happy.size()+Count.unlucky.size()))==0){
                             return;
                         }
-                        Thread.currentThread().sleep(1);
-                        syncQ.put(thread.remove(p));
+                        //Thread.currentThread().sleep(1);
+                        //synchronized (syncQ) {
+                            syncQ.put(thread.remove(p));
+                        //}
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -112,12 +114,15 @@ public class Main {
                             if ((people-(Count.happy.size()+Count.unlucky.size()))==0){
                                 return;
                             }
-                            Thread.currentThread().sleep(3);
-                            MyThread temp =  syncQ.take();
+                            //Thread.currentThread().sleep(3);
+                            synchronized (syncQ) {
+                                MyThread temp = syncQ.take();
+                                temp.c=Condition.HAPPY;
+                                if (temp.ticket!=0){
+                                    Count.addHappy(temp.ticket);
+                            }
                             //System.out.print("\nВот такой билет - "+temp.ticket);
-                            temp.c=Condition.HAPPY;
-                            if (temp.ticket!=0){
-                            Count.addHappy(temp.ticket);
+
                             Count.countL+=1;
                             }
                             if (thread.size()<=0){
