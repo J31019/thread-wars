@@ -112,17 +112,14 @@ public class Main {
                                 continue;
                             }
                         }
-
                     }
-
                 }
-
             }
         });
         arrThreadLucky.setName("Exit");
         arrThreadLucky.start();
-        Thread showThread = new Thread(new Runnable() {//поток контралирует окончание работы магазина
-            // и по окнчании выводит необходимую информацию на табло
+        Thread showThread = new Thread(new Runnable() {//поток ждет окончание работы магазина
+            // и по окончании выводит необходимую информацию на табло
             @Override
             public void run() {
                 while (true){
