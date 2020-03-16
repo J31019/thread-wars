@@ -10,14 +10,11 @@ public class MyThread extends Thread implements Runnable {
     @Override
     public synchronized void run() {
         super.run();
-
         try {
             killSwitch();
         } catch (Throwable e) {
             e.printStackTrace();
         }
-
-
     }
     public void setId(int id){
             this.Id = id;
@@ -31,15 +28,11 @@ public class MyThread extends Thread implements Runnable {
         return  this.ticket;
     }
     private synchronized void killSwitch() throws InterruptedException {
-        this.sleep(1000);
+        this.sleep(1000);//создаем 1000мс задержку перед остановкой потока
         if (this.c==Condition.HAPPY){
             return;
         }
         Thread.currentThread().interrupt();
-        //Count.addSadness(this.ticket);
-        //Count.countRemove+=1;
-        //this.interrupt();
-        //System.out.println("Я умиииииир"+this.ticket);
     }
 
 

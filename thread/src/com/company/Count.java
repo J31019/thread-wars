@@ -2,7 +2,7 @@ package com.company;
 
 import java.util.ArrayList;
 
-public class Count {
+public class Count {//класс создан для подсчета всех итераций и необходимых значений
     static int countL=0;
     static  int countRemove=0;
     static int countAdd=0;
@@ -11,7 +11,6 @@ public class Count {
     public synchronized static void showUnlucky(){
         System.out.println("статик метод");
         System.out.println("количество несчастных - "+ unlucky.size());
-        //System.out.println(unlucky.toString());
     }
     public synchronized static void addHappy(Integer e){
         happy.add(e);
